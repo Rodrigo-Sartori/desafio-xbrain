@@ -14,10 +14,10 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "txt_nome", nullable = false, length = 125)
+    @Column(name = "txt_nome", nullable = false, length = 160)
     private String nome;
 
-    @Column(name = "nm_codigo", nullable = false, length = 4)
+    @Column(name = "nm_codigo", nullable = false, length = 4,unique = true)
     private Integer codigo;
 
     public int getId() {
@@ -42,5 +42,14 @@ public class Cliente implements Serializable {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", codigo=" + codigo +
+                '}';
     }
 }

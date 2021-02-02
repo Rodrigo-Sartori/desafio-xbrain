@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
 @ControllerAdvice(annotations = {RestController.class})
-public class ControladorValidacao {
+public class ControladorValidacaoRest {
     @ExceptionHandler({MethodArgumentNotValidException.class, HttpMessageNotReadableException.class})
-    public ResponseEntity<String> handleBindingErrors(Exception ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
+    public ResponseEntity<ErroDTO> handleBindingErrors(Exception ex) {
+        ErroDTO erro =  new ErroDTO();
+        erro.setErro(ex.getMessage());
+        return ResponseEntity.badRequest().body(erro);
     }
 }

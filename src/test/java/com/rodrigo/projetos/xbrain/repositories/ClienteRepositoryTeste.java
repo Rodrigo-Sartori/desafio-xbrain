@@ -1,15 +1,17 @@
-package com.rodrigo.projetos.xbrain.repositories.repository;
+package com.rodrigo.projetos.xbrain.repositories;
 
 import com.rodrigo.projetos.xbrain.repositories.domain.Cliente;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
 @DisplayName(value = "teste de repositório da entidade cliente")
+@ActiveProfiles("test")
 public class ClienteRepositoryTeste {
 
     @Autowired
@@ -87,5 +89,16 @@ public class ClienteRepositoryTeste {
             System.out.println("deveria ter procurado com sucesso: " + e.getMessage());
         }
     }
+
+    @Test
+    @DisplayName(value = "deve deletar cliente pelo código com sucesso")
+    public void deveDeletarClientePeloCodigoComSucesso() {
+        try {
+            rep.deleteByCodigo(clienteTeste.getCodigo());
+        } catch (Exception e) {
+            System.out.println("deveria ter procurado com sucesso: " + e.getMessage());
+        }
+    }
+
 
 }
