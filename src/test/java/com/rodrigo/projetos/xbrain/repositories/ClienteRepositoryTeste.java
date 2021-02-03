@@ -75,7 +75,7 @@ public class ClienteRepositoryTeste {
             Optional<Cliente> cliente = rep.findById(clienteTeste.getId());
             Assertions.assertTrue(cliente.isPresent());
         } catch (Exception e) {
-            System.out.println("deveria ter procurado com sucesso: " + e.getMessage());
+            Assertions.fail("deveria ter procurado com sucesso: " + e.getMessage());
         }
     }
 
@@ -86,7 +86,17 @@ public class ClienteRepositoryTeste {
             List<Cliente> clientes = rep.findAll();
             Assertions.assertFalse(clientes.isEmpty());
         } catch (Exception e) {
-            System.out.println("deveria ter procurado com sucesso: " + e.getMessage());
+            Assertions.fail("deveria ter procurado com sucesso: " + e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName(value = "Não deve deletar cliente com código inexistente")
+    public void naoDeveDeletarClienteComCodigoInexistente() {
+        try {
+            rep.deleteByCodigo(12345);
+        } catch (Exception e) {
+            Assertions.assertNotNull(e.getMessage());
         }
     }
 
@@ -96,7 +106,7 @@ public class ClienteRepositoryTeste {
         try {
             rep.deleteByCodigo(clienteTeste.getCodigo());
         } catch (Exception e) {
-            System.out.println("deveria ter procurado com sucesso: " + e.getMessage());
+            Assertions.fail("deveria ter deletado com sucesso: " + e.getMessage());
         }
     }
 

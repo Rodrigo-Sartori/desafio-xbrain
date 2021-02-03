@@ -2,14 +2,12 @@ package com.rodrigo.projetos.xbrain.controller;
 
 
 import com.rodrigo.projetos.xbrain.controllers.domain.ClienteDTO;
-import com.rodrigo.projetos.xbrain.controllers.domain.TextoDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,6 +34,7 @@ public class ClienteControllerTeste extends AbstractTesteController {
             Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
+            Assertions.fail("Deveria ter salvo cliente com sucesso: "+e.getMessage());
             e.printStackTrace();
         }
     }
@@ -46,6 +45,7 @@ public class ClienteControllerTeste extends AbstractTesteController {
         try {
            rest.delete(urlBase + "cliente/deletar/1111");
         } catch (RestClientException e) {
+            Assertions.fail("Deveria ter deletado cliente com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }

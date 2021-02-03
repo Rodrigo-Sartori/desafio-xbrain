@@ -54,6 +54,7 @@ public class ConverterDTO {
         }
         pedido.setCodigoProduto(listaCodigo);
         pedido.setValorTotal(dto.getValorTotal());
+        pedido.setEnderecoEntrega(dto.getEnderecoEntrega());
         return pedido;
     }
 
