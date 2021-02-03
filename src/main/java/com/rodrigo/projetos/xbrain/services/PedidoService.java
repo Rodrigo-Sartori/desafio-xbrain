@@ -67,7 +67,6 @@ public class PedidoService {
                     collect(Collectors.toList());
             if (produtosDoPedido.isEmpty())
                 throw new DefaultExeption("produto com código " + codigo + " não está registrado na base de dados");
-            System.out.println(produtosDoPedido.toString());
             valorTotalSomado = valorTotalSomado.add(produtosDoPedido.get(0).getValor());
         }
         if (pedido.getValorTotal().compareTo(valorTotalSomado) != 0) throw new DefaultExeption("valor total está incorreto");

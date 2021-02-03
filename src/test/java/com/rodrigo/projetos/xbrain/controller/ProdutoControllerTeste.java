@@ -37,7 +37,7 @@ public class ProdutoControllerTeste extends AbstractTesteController {
             Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
-            Assertions.fail("Deveria ter salvo produto com sucesso: "+e.getMessage());
+            Assertions.fail("Deveria ter salvo produto com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -48,7 +48,7 @@ public class ProdutoControllerTeste extends AbstractTesteController {
         try {
             rest.delete(urlBase + "produto/deletar/1111");
         } catch (RestClientException e) {
-            Assertions.fail("Deveria ter deletado produto com sucesso: "+e.getMessage());
+            Assertions.fail("Deveria ter deletado produto com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }

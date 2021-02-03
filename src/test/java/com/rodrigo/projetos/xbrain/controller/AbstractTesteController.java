@@ -8,9 +8,4 @@ import org.springframework.test.context.ActiveProfiles;
 public abstract class AbstractTesteController {
 
     public String urlBase = "http://localhost:8080/api/";
-
-
-
-
-
 }

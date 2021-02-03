@@ -24,7 +24,7 @@ public class PedidoDTO {
     private BigDecimal valorTotal;
 
     @NotEmpty(message = "Endereço de entrega não pode ser vazio.")
-    @Length(min = 15, max = 70,
+    @Length(min = 10, max = 70,
             message = "endereço deve conter entre 15 e 70 caracteres.")
     private String enderecoEntrega;
 

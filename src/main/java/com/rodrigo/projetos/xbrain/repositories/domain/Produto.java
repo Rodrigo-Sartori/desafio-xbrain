@@ -12,13 +12,13 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "txt_nome", nullable = false, length = 160)
     private String nome;
 
-    @Column(name = "nm_codigo", nullable = false, length = 4,unique = true)
+    @Column(name = "nm_codigo", nullable = false, length = 4, unique = true)
     private Integer codigo;
 
     @Column(name = "vl_valor", nullable = false)

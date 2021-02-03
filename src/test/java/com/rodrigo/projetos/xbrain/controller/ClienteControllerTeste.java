@@ -34,7 +34,7 @@ public class ClienteControllerTeste extends AbstractTesteController {
             Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
-            Assertions.fail("Deveria ter salvo cliente com sucesso: "+e.getMessage());
+            Assertions.fail("Deveria ter salvo cliente com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -43,7 +43,7 @@ public class ClienteControllerTeste extends AbstractTesteController {
     @DisplayName(value = "deve salvar cliente com sucesso")
     public void deveDeletarClientePeloCodigoComSucesso() {
         try {
-           rest.delete(urlBase + "cliente/deletar/1111");
+            rest.delete(urlBase + "cliente/deletar/1111");
         } catch (RestClientException e) {
             Assertions.fail("Deveria ter deletado cliente com sucesso: " + e.getMessage());
             e.printStackTrace();

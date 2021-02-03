@@ -22,7 +22,7 @@ public class PedidoRepositoryTeste {
 
     private Pedido pedidoTeste;
 
-    private void criarPedido() {
+    public void criarPedido() {
         pedidoTeste = new Pedido();
         pedidoTeste.setCodigoCliente(4321);
         List<Integer> lista = new ArrayList<>();

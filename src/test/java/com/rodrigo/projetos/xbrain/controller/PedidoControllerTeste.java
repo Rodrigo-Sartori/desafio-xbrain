@@ -2,7 +2,6 @@ package com.rodrigo.projetos.xbrain.controller;
 
 
 import com.rodrigo.projetos.xbrain.controllers.domain.PedidoDTO;
-import com.rodrigo.projetos.xbrain.controllers.domain.ProdutoDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,7 +43,7 @@ public class PedidoControllerTeste extends AbstractTesteController {
             Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
-            Assertions.fail("Deveria ter enviado pedido com sucesso: "+e.getMessage());
+            Assertions.fail("Deveria ter enviado pedido com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }
