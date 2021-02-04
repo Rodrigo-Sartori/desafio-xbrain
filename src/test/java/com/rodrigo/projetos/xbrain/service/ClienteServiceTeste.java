@@ -38,16 +38,6 @@ public class ClienteServiceTeste {
     }
 
     @Test
-    @DisplayName(value = "Não deve inserir cliente vazio")
-    public void naoDeveInserirClienteComVazio() {
-        try {
-            service.salvar(clienteTeste);
-        } catch (Exception e) {
-            Assertions.assertNotNull(e.getMessage());
-        }
-    }
-
-    @Test
     @DisplayName(value = "Deve inserir cliente com sucesso")
     public void deveInserirClienteComSucesso() {
         try {
@@ -65,6 +55,18 @@ public class ClienteServiceTeste {
         try {
             Cliente cliente = service.salvar(clienteTeste);
             service.deletar(cliente.getCodigo());
+        } catch (Exception e) {
+            System.out.println("deveria ter deletado com sucesso:" + e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName(value = "Deve buscar todos clientes com sucesso")
+    public void deveBuscarTodosClientesComSucesso()  {
+        try {
+            List<Cliente> clientes = service.buscarTodos();
+            Assertions.assertFalse(clientes.isEmpty());
+            System.out.println(clientes.toString());
         } catch (Exception e) {
             System.out.println("deveria ter deletado com sucesso:" + e.getMessage());
         }

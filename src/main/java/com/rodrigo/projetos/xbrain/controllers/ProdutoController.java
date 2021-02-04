@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -28,13 +29,13 @@ public class ProdutoController {
     public ResponseEntity<ProdutoDTO> salvar(@Valid @RequestBody ProdutoDTO produtoDTO) throws DefaultExeption {
         try {
             Produto produto = service.salvar(produtoDTO);
-            return ResponseEntity.ok(ConverterDTO.converterProduto(produto));
+            return ResponseEntity.status(HttpStatus.CREATED).body(ConverterDTO.converterProduto(produto));
         } catch (Exception e) {
             if (e instanceof DefaultExeption){
                 throw e;
             }else{
                 e.printStackTrace();
-                throw new DefaultExeption("ocorreu um erro na classe de rest");
+                throw new DefaultExeption("ocorreu um erro ao salvar produto na controller");
             }
         }
     }
@@ -49,7 +50,21 @@ public class ProdutoController {
                 throw e;
             }else{
                 e.printStackTrace();
-                throw new DefaultExeption("ocorreu um erro na classe de rest");
+                throw new DefaultExeption("ocorreu um erro ao deletar produto na controller");
+            }
+        }
+    }
+    @GetMapping("/buscar")
+    public ResponseEntity<List<ProdutoDTO>> buscarTodos() throws DefaultExeption {
+        try {
+            List<Produto> produtos =  service.buscarTodos();
+            return ResponseEntity.ok().body(ConverterDTO.converterProdutos(produtos));
+        }catch (Exception e) {
+            if (e instanceof DefaultExeption){
+                throw e;
+            }else{
+                e.printStackTrace();
+                throw new DefaultExeption("ocorreu um erro ao buscar produtos na controller");
             }
         }
     }

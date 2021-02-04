@@ -12,6 +12,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @DisplayName(value = "teste de controller da entidade produto")
@@ -34,7 +35,7 @@ public class ProdutoControllerTeste extends AbstractTesteController {
     public void deveSalvarProdutoComSucesso() {
         try {
             ResponseEntity<ProdutoDTO> response = rest.postForEntity(urlBase + "produto/salvar", produto, ProdutoDTO.class);
-            Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
+            Assertions.assertSame(response.getStatusCode(), HttpStatus.CREATED);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
             Assertions.fail("Deveria ter salvo produto com sucesso: " + e.getMessage());
@@ -49,6 +50,19 @@ public class ProdutoControllerTeste extends AbstractTesteController {
             rest.delete(urlBase + "produto/deletar/1111");
         } catch (RestClientException e) {
             Assertions.fail("Deveria ter deletado produto com sucesso: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @DisplayName(value = "deve buscar todos os produtos com sucesso")
+    public void deveBuscarProdutosComSucesso() {
+        try {
+            ResponseEntity<List> response = rest.getForEntity(urlBase + "produto/buscar", List.class);
+            Assertions.assertSame(response.getStatusCode(), HttpStatus.OK);
+            System.out.println(response.getBody());
+        } catch (RestClientException e) {
+            Assertions.fail("Deveria ter buscado produtos com sucesso: " + e.getMessage());
             e.printStackTrace();
         }
     }

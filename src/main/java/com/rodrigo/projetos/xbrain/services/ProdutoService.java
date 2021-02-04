@@ -8,6 +8,8 @@ import com.rodrigo.projetos.xbrain.utils.ConverterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProdutoService {
 
@@ -21,6 +23,7 @@ public class ProdutoService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new DefaultExeption("ocorreu um erro ao salvar o produto no banco: " + e.getClass());
+
         }
         return produto;
     }
@@ -31,6 +34,15 @@ public class ProdutoService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new DefaultExeption("ocorreu um erro ao deletar o produto no banco: " + e.getClass());
+        }
+    }
+
+    public List<Produto> buscarTodos() throws DefaultExeption {
+        try {
+            return produtoRep.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DefaultExeption("ocorreu um erro ao buscar produtos no banco: " + e.getClass());
         }
     }
 }

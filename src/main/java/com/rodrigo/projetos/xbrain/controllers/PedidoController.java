@@ -29,7 +29,7 @@ public class PedidoController {
                 throw e;
             }else{
                 e.printStackTrace();
-                throw new DefaultExeption("ocorreu um erro na classe de rest");
+                throw new DefaultExeption("ocorreu um erro ao enviar pedido na controller");
             }
         }
     }

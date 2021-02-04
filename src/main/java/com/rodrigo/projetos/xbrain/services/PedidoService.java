@@ -52,7 +52,7 @@ public class PedidoService {
             rabbitTemplate.convertAndSend(queueName, pedido);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new DefaultExeption("ocorreu um erro ao salvar o pedido no banco: " + e.getClass());
+            throw new DefaultExeption("ocorreu um erro ao enviar o pedido: " + e.getClass());
         }
         return pedido;
     }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente")
@@ -25,13 +26,13 @@ public class ClienteController {
     public ResponseEntity<ClienteDTO> salvarCliente(@Valid @RequestBody ClienteDTO clienteDto) throws DefaultExeption {
         try {
             Cliente cliente = service.salvar(clienteDto);
-            return ResponseEntity.ok(ConverterDTO.converterCliente(cliente));
+            return ResponseEntity.status(HttpStatus.CREATED).body(ConverterDTO.converterCliente(cliente));
         } catch (Exception e) {
             if (e instanceof DefaultExeption){
                 throw e;
             }else{
                 e.printStackTrace();
-                throw new DefaultExeption("ocorreu um erro na classe de rest");
+                throw new DefaultExeption("ocorreu um erro ao salvar cliente na controller");
             }
         }
     }
@@ -46,7 +47,22 @@ public class ClienteController {
                 throw e;
             }else{
                 e.printStackTrace();
-                throw new DefaultExeption("ocorreu um erro na classe de rest");
+                throw new DefaultExeption("ocorreu um erro ao deletar cliente na controller");
+            }
+        }
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<List<ClienteDTO>> deletarCliente() throws DefaultExeption {
+        try {
+            List<Cliente> clientes =service.buscarTodos();
+            return ResponseEntity.ok().body(ConverterDTO.converterClientes(clientes));
+        }catch (Exception e) {
+            if (e instanceof DefaultExeption){
+                throw e;
+            }else{
+                e.printStackTrace();
+                throw new DefaultExeption("ocorreu um erro ao salvar cliente na controller");
             }
         }
     }

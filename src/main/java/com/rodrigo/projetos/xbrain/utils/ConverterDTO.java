@@ -28,6 +28,14 @@ public class ConverterDTO {
         return dto;
     }
 
+    public static List<ClienteDTO> converterClientes(List<Cliente> clientes) {
+        List<ClienteDTO> dtos = new ArrayList<>();
+        for (Cliente cliente : clientes) {
+            dtos.add(converterCliente(cliente));
+        }
+        return dtos;
+    }
+
     public static Produto converterProdutoDto(ProdutoDTO dto) {
         Produto produto = new Produto();
         produto.setNome(dto.getNome());
@@ -45,11 +53,19 @@ public class ConverterDTO {
         return dto;
     }
 
+    public static List<ProdutoDTO> converterProdutos(List<Produto> produtos) {
+        List<ProdutoDTO> listaDto = new ArrayList<>();
+        for (Produto produto : produtos) {
+            listaDto.add(converterProduto(produto));
+        }
+        return listaDto;
+    }
+
     public static Pedido converterPedidoDto(PedidoDTO dto) {
         Pedido pedido = new Pedido();
         List<Integer> listaCodigo = new ArrayList<>();
         pedido.setCodigoCliente(Integer.parseInt(dto.getCodigoCliente()));
-        for (String cod: dto.getCodigoProduto()) {
+        for (String cod : dto.getCodigoProduto()) {
             listaCodigo.add(Integer.parseInt(cod));
         }
         pedido.setCodigoProduto(listaCodigo);
@@ -62,7 +78,7 @@ public class ConverterDTO {
         PedidoDTO dto = new PedidoDTO();
         List<String> listaCodigo = new ArrayList<>();
         dto.setCodigoCliente(pedido.getCodigoCliente().toString());
-        for (Integer cod:pedido.getCodigoProduto()) {
+        for (Integer cod : pedido.getCodigoProduto()) {
             listaCodigo.add(cod.toString());
         }
         dto.setCodigoProduto(listaCodigo);
